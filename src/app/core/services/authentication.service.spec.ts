@@ -5,6 +5,8 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
 import { RegisteredEmailMockResponse, SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
 import { RegisteredEmailError } from '../errors/RegisteredEmailError';
+import { LoginUserDTO } from './DTO/LoginUserDTO';
+import { SuccessLoginMockResponse } from '../__mocks__/loginUserMocks';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -83,5 +85,18 @@ describe('AuthenticationService', () => {
     expect(req.request.method).toEqual('POST');
 
     req.flush({});
+  })
+
+  it('should return a valid response when make a request in login', (done: DoneFn) => {
+    const url = 'http://localhost:3000/api/v1/auth/login'
+
+    service.login( 'david@mail.com', '12345678').subscribe((res: LoginUserDTO) => {
+      expect(res.message).toBeTruthy()
+      expect(res.success).toBeTruthy()
+      expect(res.jwt).toBeTruthy()
+      done()
+    })
+
+    httpClient.expectOne(url).flush(SuccessLoginMockResponse);
   })
 });
