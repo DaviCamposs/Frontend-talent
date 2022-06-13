@@ -69,4 +69,19 @@ describe('AuthenticationService', () => {
 
     httpClient.expectOne(url).flush(RegisteredEmailMockResponse);
   })
+
+  it('should make a POST request in login', (done: DoneFn) => {
+    const url = 'http://localhost:3000/api/v1/auth/login'
+
+    service.login('david@mail.com', '12345678').subscribe(() => {
+      done()
+    })
+
+    const req: TestRequest = httpClient.expectOne(url)
+
+    expect(req.request.urlWithParams).toEqual(url);
+    expect(req.request.method).toEqual('POST');
+
+    req.flush({});
+  })
 });
