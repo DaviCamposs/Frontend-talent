@@ -13,6 +13,10 @@ const routes: Routes = [
     component: MainPagePokemonComponent,
     canActivate: [AuthenticatedGuard]
   },
+  {
+    path: '**',
+    redirectTo: 'auth'
+  }
 ];
 
 @NgModule({
