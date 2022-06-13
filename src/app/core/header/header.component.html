@@ -6,7 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link">Pokemon</a>
+          <a routerLink="/pokemon" class="nav-link">Pokemon</a>
           <a class="nav-link">Books</a>
           <a *ngIf="isLogged" (click)="logout()" class="nav-link">Logout</a>
         </div>

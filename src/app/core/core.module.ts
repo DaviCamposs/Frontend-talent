@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule  } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
