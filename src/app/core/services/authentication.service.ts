@@ -15,7 +15,7 @@ export class AuthenticationService {
 
   private base_url: string
 
-  private isLoggedSubject: BehaviorSubject<boolean>;
+  public isLoggedSubject: BehaviorSubject<boolean>;
   public isLogged: Observable<boolean>;
 
   constructor(private http: HttpClient, private storageService: StorageService) { 
