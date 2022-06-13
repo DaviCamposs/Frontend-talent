@@ -16,6 +16,6 @@ export class AuthenticationService {
   }
 
   register(name: string , email: string , password: string): Observable<RegisterUserDTO> {
-    return this.http.post<RegisterUserDTO>(this.base_url + 'auth/login', { name , email , password })
+    return this.http.post<RegisterUserDTO>(this.base_url + 'auth/register', { name , email , password })
   }
 }
