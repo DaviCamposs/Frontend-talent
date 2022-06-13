@@ -3,7 +3,8 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 
 import { AuthenticationService } from './authentication.service';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
-import { SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
+import { RegisteredEmailMockResponse, SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
+import { RegisteredEmailError } from '../errors/RegisteredEmailError';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -51,5 +52,21 @@ describe('AuthenticationService', () => {
     })
 
     httpClient.expectOne(url).flush(SuccessRegisterUserMockResponse);
+  })
+
+  it('should throw an error if e-mail is already registered', (done: DoneFn) => {
+    const url = 'http://localhost:3000/api/v1/auth/register'
+
+    service.register('david', 'david@mail.com', '12345678').subscribe(
+      res => {
+        fail('should be failed')
+      },
+      error => {
+        expect(error).toBeInstanceOf(RegisteredEmailError)
+        done()
+      }
+    )
+
+    httpClient.expectOne(url).flush(RegisteredEmailMockResponse);
   })
 });
