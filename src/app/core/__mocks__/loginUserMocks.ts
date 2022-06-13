@@ -3,3 +3,8 @@ export const SuccessLoginMockResponse = {
     message: 'login successfully',
     jwt: 'sometoken'
 }
+
+export const FailedLoginMockResponse = {
+    title: 'Not authorized',
+    message: 'Verify your credentials'
+}
