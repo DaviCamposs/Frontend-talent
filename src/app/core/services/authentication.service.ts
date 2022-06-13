@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegisteredEmailError } from '../errors/RegisteredEmailError';
+import { LoginUserDTO } from './DTO/LoginUserDTO';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
 
 @Injectable({
@@ -25,6 +26,10 @@ export class AuthenticationService {
         }),
         catchError(this.handlerError)
       )
+  }
+
+  login(email: string, password: string): Observable<LoginUserDTO> {
+    return this.http.post<LoginUserDTO>(this.base_url + 'auth/login',{ email , password })
   }
 
   private handlerError(error: HttpErrorResponse) {
