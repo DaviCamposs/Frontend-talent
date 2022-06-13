@@ -6,7 +6,8 @@ import { RegisterUserDTO } from './DTO/registerUserDTO';
 import { RegisteredEmailMockResponse, SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
 import { RegisteredEmailError } from '../errors/RegisteredEmailError';
 import { LoginUserDTO } from './DTO/LoginUserDTO';
-import { SuccessLoginMockResponse } from '../__mocks__/loginUserMocks';
+import { FailedLoginMockResponse, SuccessLoginMockResponse } from '../__mocks__/loginUserMocks';
+import { WrongCredentialsError } from '../errors/wrongCredentialsError';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -98,5 +99,21 @@ describe('AuthenticationService', () => {
     })
 
     httpClient.expectOne(url).flush(SuccessLoginMockResponse);
+  })
+
+  it('should throw an error if e-mail or password are incorrect', (done: DoneFn) => {
+    const url = 'http://localhost:3000/api/v1/auth/login'
+
+    service.login('david@mail.com', '12345678').subscribe(
+      res => {
+        fail('should be failed')
+      },
+      error => {
+        expect(error).toBeInstanceOf(WrongCredentialsError)
+        done()
+      }
+    )
+
+    httpClient.expectOne(url).flush(FailedLoginMockResponse);
   })
 });
