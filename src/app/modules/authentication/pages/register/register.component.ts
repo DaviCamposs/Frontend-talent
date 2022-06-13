@@ -35,6 +35,12 @@ export class RegisterComponent {
     }
   }
 
+  register() {
+    this.formSubmit = true
+    if (!this.registerForm.valid) 
+      return
+  }
+
 
 
 }
