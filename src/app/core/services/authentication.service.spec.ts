@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { AuthenticationService } from './authentication.service';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
 import { RegisteredEmailMockResponse, SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
-import { RegisteredEmailError } from '../errors/RegisteredEmailError';
+import { RegisteredEmailError } from '../errors/registeredEmailError';
 import { LoginUserDTO } from './DTO/LoginUserDTO';
 import { FailedLoginMockResponse, SuccessLoginMockResponse } from '../__mocks__/loginUserMocks';
 import { WrongCredentialsError } from '../errors/wrongCredentialsError';

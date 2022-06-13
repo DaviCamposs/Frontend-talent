@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RegisteredEmailError } from '../errors/RegisteredEmailError';
+import { RegisteredEmailError } from '../errors/registeredEmailError';
 import { WrongCredentialsError } from '../errors/wrongCredentialsError';
 import { LoginUserDTO } from './DTO/LoginUserDTO';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
