@@ -1,11 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegisteredEmailError } from '../errors/registeredEmailError';
 import { WrongCredentialsError } from '../errors/wrongCredentialsError';
 import { LoginUserDTO } from './DTO/LoginUserDTO';
 import { RegisterUserDTO } from './DTO/registerUserDTO';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,13 @@ export class AuthenticationService {
 
   private base_url: string
 
-  constructor(private http: HttpClient) { 
+  private isLoggedSubject: BehaviorSubject<boolean>;
+  public isLogged: Observable<boolean>;
+
+  constructor(private http: HttpClient, private storageService: StorageService) { 
     this.base_url = environment.backendUrl
+    this.isLoggedSubject = new BehaviorSubject<boolean>(!!this.storageService.getJwt());
+    this.isLogged = this.isLoggedSubject.asObservable();
   }
 
   register(name: string , email: string , password: string): Observable<RegisterUserDTO> {
@@ -35,9 +41,16 @@ export class AuthenticationService {
         tap((res: LoginUserDTO)=> {
           if (res.message == 'Verify your credentials')
             throw new WrongCredentialsError()
+            this.storageService.saveJwt(res.jwt)
+            this.isLoggedSubject.next(true)
         }),
         catchError(this.handlerError)
       )
+  }
+
+  logout() {
+    this.storageService.clear()
+    this.isLoggedSubject.next(false)
   }
 
   private handlerError(error: HttpErrorResponse) {
