@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing'
 
 import { AuthenticationService } from './authentication.service';
+import { RegisterUserDTO } from './DTO/registerUserDTO';
+import { SuccessRegisterUserMockResponse } from '../__mocks__/registerUserMocks';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -25,9 +27,9 @@ describe('AuthenticationService', () => {
   });
 
   it('should make a POST request in register', (done: DoneFn) => {
-    const url = 'http://localhost:3000/api/v1/auth/login'
+    const url = 'http://localhost:3000/api/v1/auth/register'
 
-    service.register('david','david@mail.com','12345678').subscribe(() => {
+    service.register('david', 'david@mail.com', '12345678').subscribe(() => {
       done()
     })
 
@@ -37,5 +39,17 @@ describe('AuthenticationService', () => {
     expect(req.request.method).toEqual('POST');
 
     req.flush({});
+  })
+
+  it('should return a valid response when make a request', (done: DoneFn) => {
+    const url = 'http://localhost:3000/api/v1/auth/register'
+
+    service.register('david', 'david@mail.com', '12345678').subscribe((res: RegisterUserDTO) => {
+      expect(res.message).toBeTruthy()
+      expect(res.success).toBeTruthy()
+      done()
+    })
+
+    httpClient.expectOne(url).flush(SuccessRegisterUserMockResponse);
   })
 });
