@@ -1,5 +1,5 @@
 export interface LoginUserDTO {
     success: boolean,
-    message: boolean,
+    message: string,
     jwt: string
 }
