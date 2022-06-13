@@ -14,6 +14,6 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  exports: [ReactiveFormsModule]
+  exports: [ReactiveFormsModule, HeaderComponent]
 })
 export class CoreModule { }
