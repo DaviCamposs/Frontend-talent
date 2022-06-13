@@ -38,6 +38,18 @@ export class RegisterComponent {
     }
   }
 
+  invalidField(field: string): boolean {
+    if (this.registerForm.get(field)?.invalid && this.formSubmit) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  isFormValid(): boolean {
+    return this.registerForm.valid
+  }
+
   register() {
     this.formSubmit = true
     if (!this.registerForm.valid)

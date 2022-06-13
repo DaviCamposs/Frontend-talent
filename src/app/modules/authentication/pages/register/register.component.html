@@ -5,21 +5,33 @@
             <form [formGroup]="registerForm" (ngSubmit)="register()">
                 <div class="mb-3">
                     <label for="nameInput" class="form-label">Name</label>
-                    <input type="text" formControlName="name" class="form-control" id="nameInput" placeholder="David Smith">
+                    <input type="text" formControlName="name" class="form-control" id="nameInput"  placeholder="David Smith">
+                    <div id="nameValidation" *ngIf="invalidField('name')" class="text-danger">
+                        Please provide a valid name.
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="emailInput" class="form-label">Email</label>
-                    <input type="email" formControlName="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                    <input type="email" formControlName="email" class="form-control" id="emailInput"  placeholder="name@example.com">
+                    <div id="nameValidation" *ngIf="invalidField('email')"  class="text-danger">
+                        Please provide a valid email.
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="passwordInput" class="form-label">Password</label>
-                    <input type="password" formControlName="password" class="form-control" id="passwordInput" placeholder="********">
+                    <input type="password" formControlName="password" class="form-control"  id="passwordInput" placeholder="********">
+                    <div id="nameValidation" *ngIf="invalidField('password')"  class="text-danger">
+                        Please provide a valid password.
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="confirmPasswordInput" class="form-label">Confirm Password</label>
-                    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPasswordInput" placeholder="********">
+                    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPasswordInput"  placeholder="********">
+                    <div id="nameValidation" *ngIf="invalidField('confirmPassword')"  class="text-danger">
+                        Please provide a valid confirm Password.
+                      </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100" >Register</button>
+                <button [disabled]="!isFormValid()" type="submit" class="btn btn-primary w-100" >Register</button>
                 <p class="text-center">or</p>
                 <div class="link-container text-center">
                     <a  class="text-primary" >Already have a account? Login</a>
