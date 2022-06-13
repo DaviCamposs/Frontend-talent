@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Login</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="emailInput"
+                        placeholder="name@example.com">
+                    <div id="nameValidation" *ngIf="invalidField('email')" class="text-danger">
+                        Please provide a valid email.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control" id="passwordInput"
+                        placeholder="********">
+                    <div id="nameValidation" *ngIf="invalidField('password')" class="text-danger">
+                        Please provide a valid password.
+                    </div>
+                </div>
+                <button [disabled]="!isFormValid()" type="submit" class="btn btn-primary w-100">Login</button>
+                <p class="text-center">or</p>
+                <div class="link-container text-center">
+                    <a class="text-primary">Don't have a account? Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

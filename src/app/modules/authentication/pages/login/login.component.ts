@@ -18,5 +18,23 @@ export class LoginComponent {
     })
   }
 
+  isFormValid(): boolean {
+    return this.loginForm.valid
+  }
+  
+  invalidField(field: string): boolean {
+    if (this.loginForm.get(field)?.invalid && this.submitForm) {
+      return true
+    } else {
+      return false
+    }
+  }
+  login() {
+    this.submitForm = true
+    if (this.loginForm.invalid) {
+      return
+    }
+  }
+
 
 }
