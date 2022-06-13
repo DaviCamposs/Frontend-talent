@@ -2,22 +2,22 @@
     <div class="row">
         <div class="col">
             <h2>Register</h2>
-            <form>
+            <form [formGroup]="registerForm">
                 <div class="mb-3">
                     <label for="nameInput" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="nameInput" placeholder="David Smith">
+                    <input type="text" formControlName="name" class="form-control" id="nameInput" placeholder="David Smith">
                 </div>
                 <div class="mb-3">
                     <label for="emailInput" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                    <input type="email" formControlName="email" class="form-control" id="emailInput" placeholder="name@example.com">
                 </div>
                 <div class="mb-3">
                     <label for="passwordInput" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="passwordInput" placeholder="********">
+                    <input type="password" formControlName="password" class="form-control" id="passwordInput" placeholder="********">
                 </div>
                 <div class="mb-3">
                     <label for="confirmPasswordInput" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPasswordInput" placeholder="********">
+                    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPasswordInput" placeholder="********">
                 </div>
                 <button class="btn btn-primary w-100" >Register</button>
                 <p class="text-center">or</p>
