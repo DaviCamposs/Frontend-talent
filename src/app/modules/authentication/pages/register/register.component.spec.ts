@@ -38,4 +38,16 @@ describe('RegisterComponent', () => {
     expect(password).toBeTruthy()
     expect(confirmPassword).toBeTruthy()
   })
+
+  it('should not validate a form if password and confirmPassord are differente',() => {
+    const form = component.registerForm
+
+    const password = form.get('password')
+    const confirmPassword = form.get('confirmPassword')
+
+    password?.setValue('12345678')
+    confirmPassword?.setValue('87654321')
+
+    expect(form.valid).toBeFalse()
+  })
 });
