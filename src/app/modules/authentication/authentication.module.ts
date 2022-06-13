@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { RegisterComponent } from './pages/register/register.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RegisterComponent } from './pages/register/register.component';
   ],
   imports: [
     CommonModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    CoreModule
   ]
 })
 export class AuthenticationModule { }
