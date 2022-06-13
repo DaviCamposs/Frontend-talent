@@ -8,6 +8,7 @@
         <div class="navbar-nav">
           <a class="nav-link">Pokemon</a>
           <a class="nav-link">Books</a>
+          <a *ngIf="isLogged" (click)="logout()" class="nav-link">Logout</a>
         </div>
       </div>
     </div>
