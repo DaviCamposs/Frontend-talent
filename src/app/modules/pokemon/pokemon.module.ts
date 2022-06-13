@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainPagePokemonComponent } from './pages/main-page-pokemon/main-page-pokemon.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,9 @@ import { MainPagePokemonComponent } from './pages/main-page-pokemon/main-page-po
     MainPagePokemonComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreModule,
+    FormsModule
   ],
   exports: [MainPagePokemonComponent]
 })

@@ -1,15 +1,31 @@
-<div class="container">
+<div class="container text-center mx-auto">
     <div class="row">
         <div class="col">
-            <div class="input-group">
-                <div class="form-outline">
-                    <input id="search-input" type="search" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Search</label>
-                </div>
-                <button id="search-button" type="button" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
+            <div class="input-group mb-3">
+                <input [(ngModel)]="search" type="text" class="form-control" placeholder="Pikachu"
+                    aria-describedby="button-search">
+                <button (click)="searchPokemon()" class="btn btn-outline-secondary" type="button"
+                    id="button-search">Search</button>
             </div>
+            <div *ngIf="pokemon" class="card" style="width: 18rem;">
+                <img [src]="pokemon.sprites.front_default" class="card-img-top" alt="...">
+                <p class="card-title">{{pokemon.species.name}}</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Power</th>
+                            <th scope="col">Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let stat of pokemon.stats">
+                            <td>{{stat.stat.name}}</td>
+                            <td>{{stat.base_stat}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h1 *ngIf="!pokemon" >Search for a valid pokemon</h1>
         </div>
     </div>
 </div>
